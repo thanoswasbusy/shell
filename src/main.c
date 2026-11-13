@@ -103,7 +103,7 @@ int shell_cd(char **args);
 int shell_help(char **args);
 int shell_exit(char **args);
 
-char builtin_str[] = {"cd", "help", "exit"};
+char *builtin_str[] = {"cd", "help", "exit"};
 
 int (*builtin_func[])(char **) = {
     &shell_cd,
@@ -143,7 +143,7 @@ int shell_execute(char **args) {
   }
 
   for (int i = 0; i < shell_num_builtins(); i++) {
-    if (strcmp(args[0], &builtin_str[i]) == 0) {
+    if (strcmp(args[0], builtin_str[i]) == 0) {
       return (*builtin_func[i])(args);
     }
   }
